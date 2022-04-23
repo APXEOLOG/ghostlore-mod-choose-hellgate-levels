@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
+    <TargetFramework>net471</TargetFramework>
+    <GameDllsPath Condition=" '$(GameDllsPath)' == '' ">
+      C:\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed
+    </GameDllsPath>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="GameDifficultyInfo.xml" />
+    <None Remove="modinfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Ghostlore">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed\Ghostlore.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Ghostlore\Ghostlore_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Creatures.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="screenshot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.2.1" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="bin\Release\net471\ChooseHellgateLevels.dll" DestinationFiles="..\dist\ChooseHellgateLevels.dll" ContinueOnError="true" />
+    <Copy SourceFiles="bin\Release\net471\0Harmony.dll" DestinationFiles="..\dist\0Harmony.dll" ContinueOnError="true" />
+    <Copy SourceFiles="..\ModInfo.xml" DestinationFiles="..\dist\ModInfo.xml" ContinueOnError="true" />
+    <Copy SourceFiles="..\screenshot.png" DestinationFiles="..\dist\screenshot.png" ContinueOnError="true" />
+    <RemoveDir Directories="bin\" />
+    <RemoveDir Directories="obj\" />
+  </Target>
+
+</Project>
