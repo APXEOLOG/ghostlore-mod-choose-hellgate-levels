@@ -22,7 +22,7 @@ This mod allows you to configure what locations do you not want to run in Hell G
 ```
 6. The `AllHellgateLevels` array lists all hell gate level names. You should select those you don't want to use and put them into the `LevelsToExclude`
 
-`Example: Exclude everything except into island level`
+`Example: Exclude everything except intro island level`
 ```json
 {
   "LevelsToExclude": [
@@ -47,4 +47,10 @@ This mod allows you to configure what locations do you not want to run in Hell G
 
 # FAQ
 Q: There is a new level, how do I know it's name?
+
 A: Delete the file and restart the game, the updated file with all level names will be generated
+
+
+Q: What if I edit `AllHellgateLevels` field?
+
+A: This field does not affect anything, it is just to display the level names 
